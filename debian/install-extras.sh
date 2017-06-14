@@ -29,6 +29,7 @@ if [ $RELEASE != 'stretch' ] ; then
   PACKAGES+=' python-software-properties'
 fi
 utils.lxc.attach apt-get update
+utils.lxc.attach mount -o remount,ro /sys/fs/selinux
 utils.lxc.attach apt-get install ${PACKAGES[*]} -y --force-yes
 utils.lxc.attach apt-get upgrade -y --force-yes
 
