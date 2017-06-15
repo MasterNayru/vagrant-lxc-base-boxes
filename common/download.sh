@@ -44,6 +44,10 @@ elif [ ${DISTRIBUTION} = 'fedora' ] && [ ${RELEASE} -ge 21 ]; then
   utils.lxc.create -t fedora --\
                    --release ${RELEASE} \
                    --arch ${ARCH}
+elif [ ${DISTRIBUTION} = 'alpine' ]; then
+    utils.lxc.create -t alpine --\
+                     --mirror http://dl-cdn.alpinelinux.org/alpine/ \
+                     --arch ${ARCH}
 else
   utils.lxc.create -t download -- \
                    --dist ${DISTRIBUTION} \

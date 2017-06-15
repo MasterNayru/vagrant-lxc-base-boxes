@@ -2,6 +2,7 @@ UBUNTU_BOXES= precise quantal raring saucy trusty utopic vivid wily xenial
 DEBIAN_BOXES= squeeze wheezy jessie stretch sid
 CENTOS_BOXES= centos-6 centos-7
 FEDORA_BOXES= rawhide fedora-23 fedora-22 fedora-21 fedora-20 fedora-19
+ALPINE_BOXES=alpine-3.5
 TODAY=$(shell date -u +"%Y-%m-%d")
 
 # Replace i686 with i386 and x86_64 with amd64
@@ -43,6 +44,13 @@ $(FEDORA_BOXES): PACKAGE = "output/${TODAY}/vagrant-lxc-fedora-${@}-$(ARCH).box"
 $(FEDORA_BOXES):
 	@mkdir -p $$(dirname $(PACKAGE))
 	@sudo -E ./mk-fedora.sh $(@) $(ARCH) $(CONTAINER) $(PACKAGE)
+	@sudo chmod +rw $(PACKAGE)
+	@sudo chown ${USER}: $(PACKAGE)
+$(ALPINE_BOXES): CONTAINER = "vagrant-base-alpine-${@}-$(ARCH)"
+$(ALPINE_BOXES): PACKAGE = "output/${TODAY}/vagrant-lxc-alpine-${@}-$(ARCH).box"
+$(ALPINE_BOXES):
+	@mkdir -p $$(dirname $(PACKAGE))
+	@sudo -E ./mk-alpine.sh $(@) $(ARCH) $(CONTAINER) $(PACKAGE)
 	@sudo chmod +rw $(PACKAGE)
 	@sudo chown ${USER}: $(PACKAGE)
 
