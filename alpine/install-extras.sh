@@ -19,3 +19,4 @@ PACKAGES=(vim curl wget man ca-certificates bash sudo openssh-server)
 
 utils.lxc.attach apk update
 utils.lxc.attach apk add -y ${PACKAGES[*]}
+utils.lxc.attach rc-update add sshd
