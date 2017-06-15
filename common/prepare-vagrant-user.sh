@@ -35,8 +35,7 @@ elif [ ${DISTRIBUTION} = 'alpine' ]; then
   echo -n 'vagrant:vagrant' | chroot ${ROOTFS} chpasswd
 else
   debug 'Creating vagrant user...'
-  chroot ${ROOTFS} useradd --create-home -s /bin/bash vagrant &>> ${LOG}
-  chroot ${ROOTFS} adduser vagrant sudo &>> ${LOG}
+  chroot ${ROOTFS} useradd --create-home -U -s /bin/bash vagrant &>> ${LOG}
   echo -n 'vagrant:vagrant' | chroot ${ROOTFS} chpasswd
 fi
 

@@ -2,6 +2,7 @@ UBUNTU_BOXES= precise quantal raring saucy trusty utopic vivid wily xenial
 DEBIAN_BOXES= squeeze wheezy jessie stretch sid
 CENTOS_BOXES= centos-6 centos-7
 FEDORA_BOXES= rawhide fedora-23 fedora-22 fedora-21 fedora-20 fedora-19
+ARCHLINUX_BOXES=archlinux-current
 ALPINE_BOXES=alpine-3.5
 TODAY=$(shell date -u +"%Y-%m-%d")
 
@@ -16,6 +17,8 @@ ubuntu: $(UBUNTU_BOXES)
 debian: $(DEBIAN_BOXES)
 centos: $(CENTOS_BOXES)
 fedora: $(FEDORA_BOXES)
+archlinux: ${ARCH_BOXES}
+alpine: ${ALPINE_BOXES}
 
 # REFACTOR: Figure out how can we reduce duplicated code
 $(UBUNTU_BOXES): CONTAINER = "vagrant-base-${@}-$(ARCH)"
@@ -51,6 +54,13 @@ $(ALPINE_BOXES): PACKAGE = "output/${TODAY}/vagrant-lxc-alpine-${@}-$(ARCH).box"
 $(ALPINE_BOXES):
 	@mkdir -p $$(dirname $(PACKAGE))
 	@sudo -E ./mk-alpine.sh $(@) $(ARCH) $(CONTAINER) $(PACKAGE)
+	@sudo chmod +rw $(PACKAGE)
+	@sudo chown ${USER}: $(PACKAGE)
+$(ARCHLINUX_BOXES): CONTAINER = "vagrant-base-archlinux-${@}-$(ARCH)"
+$(ARCHLINUX_BOXES): PACKAGE = "output/${TODAY}/vagrant-lxc-archlinux-${@}-$(ARCH).box"
+$(ARCHLINUX_BOXES):
+	@mkdir -p $$(dirname $(PACKAGE))
+	@sudo -E ./mk-archlinux.sh $(@) $(ARCH) $(CONTAINER) $(PACKAGE)
 	@sudo chmod +rw $(PACKAGE)
 	@sudo chown ${USER}: $(PACKAGE)
 
