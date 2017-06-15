@@ -1,10 +1,10 @@
-UBUNTU_BOXES= precise quantal raring saucy trusty utopic vivid wily xenial
+UBUNTU_BOXES= precise quantal raring saucy trusty utopic vivid wily xenial yakkety zesty artful
 DEBIAN_BOXES= squeeze wheezy jessie stretch sid
 CENTOS_BOXES= centos-6 centos-7
-FEDORA_BOXES= rawhide fedora-23 fedora-22 fedora-21 fedora-20 fedora-19
+FEDORA_BOXES= rawhide fedora-25 fedora-24 fedora-23 fedora-22 fedora-21
 ARCHLINUX_BOXES=archlinux-current
-ALPINE_BOXES=alpine-3.5
-OPENSUSE_BOXES=opensuse-42.2
+ALPINE_BOXES=alpine-3.5 alpine-3.4 alpine-3.3 alpine-3.2 alpine-3.1 alpine-edge
+OPENSUSE_BOXES=opensuse-42.2 opensuse-13.2
 TODAY=$(shell date -u +"%Y-%m-%d")
 
 # Replace i686 with i386 and x86_64 with amd64
