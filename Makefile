@@ -1,7 +1,7 @@
 UBUNTU_BOXES= precise quantal raring saucy trusty utopic vivid wily xenial
 DEBIAN_BOXES= squeeze wheezy jessie stretch sid
-CENTOS_BOXES= 6 7
-FEDORA_BOXES= rawhide 23 22 21 20 19
+CENTOS_BOXES= centos-6 centos-7
+FEDORA_BOXES= rawhide fedora-23 fedora-22 fedora-21 fedora-20 fedora-19
 TODAY=$(shell date -u +"%Y-%m-%d")
 
 # Replace i686 with i386 and x86_64 with amd64
